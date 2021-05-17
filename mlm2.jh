@@ -1,0 +1,21 @@
+enum BoardType {
+    TRAVELLER, EXPRESS
+}
+
+entity Board {
+	@Id boardId Long
+	type BoardType required
+    status String
+}
+
+entity BoardUser {
+	boardId Long
+    userId Long
+    level Integer
+    status String
+}
+
+paginate Board with infinite-scroll
+paginate BoardUser with pagination
+
+service all with serviceImpl
