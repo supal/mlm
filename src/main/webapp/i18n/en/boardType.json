@@ -1,0 +1,9 @@
+{
+  "mlmApp": {
+    "BoardType": {
+      "null": "",
+      "TRAVELLER": "TRAVELLER",
+      "EXPRESS": "EXPRESS"
+    }
+  }
+}

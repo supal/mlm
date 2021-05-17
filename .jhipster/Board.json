@@ -1,0 +1,33 @@
+{
+  "name": "Board",
+  "fields": [
+    {
+      "fieldName": "boardId",
+      "fieldType": "Long",
+      "options": {
+        "id": true
+      }
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "BoardType",
+      "fieldValues": "TRAVELLER,EXPRESS",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "status",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "board",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210517050443"
+}

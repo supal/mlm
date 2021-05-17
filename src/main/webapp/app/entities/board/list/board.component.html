@@ -1,0 +1,80 @@
+<div>
+  <h2 id="page-heading" data-cy="BoardHeading">
+    <span jhiTranslate="mlmApp.board.home.title">Boards</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="reset()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="mlmApp.board.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-board"
+        [routerLink]="['/board/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="mlmApp.board.home.createLabel"> Create a new Board </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="boards?.length === 0">
+    <span jhiTranslate="mlmApp.board.home.notFound">No boards found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="boards && boards.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="reset.bind(this)">
+          <th scope="col" jhiSortBy="boardId"><span jhiTranslate="mlmApp.board.boardId">Board Id</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="type"><span jhiTranslate="mlmApp.board.type">Type</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="status"><span jhiTranslate="mlmApp.board.status">Status</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+        <tr *ngFor="let board of boards; trackBy: trackBoardId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/board', board.boardId, 'view']">{{ board.boardId }}</a>
+          </td>
+          <td jhiTranslate="{{ 'mlmApp.BoardType.' + board.type }}">{{ board.type }}</td>
+          <td>{{ board.status }}</td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/board', board.boardId, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/board', board.boardId, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(board)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

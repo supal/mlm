@@ -42,7 +42,9 @@
     "jwtSecretKey": "OGIwYzA5MDhlODNiZDE1MjFjODBjOWUzM2ZjNDc1M2E5OGQ5Y2Q4ZDgxM2IxMGQzMDkxMDIwYzE0Njg5YjI5MWVjNzI3YjRjMDgzZGNkZjI5YjY3MDNkOTFkMTJhNWY4ZmQxZDVmODY2MjM0Y2IxYTdhZDY3ZmY3ZTAwNjQyYzc=",
     "clientTheme": "none",
     "clientThemeVariant": "",
-    "reactive": false
+    "reactive": false,
+    "entities": ["Board", "BoardUser"],
+    "lastLiquibaseTimestamp": 1621227884000
   },
   "git-provider": "GitHub",
   "git-company": "supal",
