@@ -1,0 +1,37 @@
+enum BoardType {
+    SINGLE, MULTI, MANUAL
+}
+
+entity Board {
+	type BoardType required
+}
+
+entity BoardMlmUser {
+	boardId Long
+    mlmUserId Long
+    level Integer
+}
+
+entity MlmUser {
+    userId Long
+    paid Boolean
+    active Boolean
+    refMlmUserId Long
+}
+
+relationship ManyToOne {
+  MlmUser{user} to User
+}
+
+relationship ManyToOne {
+	BoardMlmUser{board} to Board
+}
+
+relationship ManyToOne {
+	BoardMlmUser{mlmUser} to MlmUser
+}
+
+paginate MlmUser, Board with infinite-scroll
+paginate BoardMlmUser with pagination
+
+service all with serviceImpl
