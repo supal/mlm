@@ -1,0 +1,28 @@
+{
+  "mlmApp": {
+    "boardMlmUser": {
+      "home": {
+        "title": "Board Mlm Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Board Mlm User",
+        "createOrEditLabel": "Create or edit a Board Mlm User",
+        "notFound": "No Board Mlm Users found"
+      },
+      "created": "A new Board Mlm User is created with identifier {{ param }}",
+      "updated": "A Board Mlm User is updated with identifier {{ param }}",
+      "deleted": "A Board Mlm User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Board Mlm User {{ id }}?"
+      },
+      "detail": {
+        "title": "Board Mlm User"
+      },
+      "id": "ID",
+      "boardId": "Board Id",
+      "mlmUserId": "Mlm User Id",
+      "level": "Level",
+      "board": "Board",
+      "mlmUser": "Mlm User"
+    }
+  }
+}

@@ -1,0 +1,120 @@
+<div>
+  <h2 id="page-heading" data-cy="BoardMlmUserHeading">
+    <span jhiTranslate="mlmApp.boardMlmUser.home.title">Board Mlm Users</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info mr-2" (click)="loadPage()" [disabled]="isLoading">
+        <fa-icon icon="sync" [spin]="isLoading"></fa-icon>
+        <span jhiTranslate="mlmApp.boardMlmUser.home.refreshListLabel">Refresh List</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-board-mlm-user"
+        [routerLink]="['/board-mlm-user/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="mlmApp.boardMlmUser.home.createLabel"> Create a new Board Mlm User </span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  <div class="alert alert-warning" id="no-result" *ngIf="boardMlmUsers?.length === 0">
+    <span jhiTranslate="mlmApp.boardMlmUser.home.notFound">No boardMlmUsers found</span>
+  </div>
+
+  <div class="table-responsive" id="entities" *ngIf="boardMlmUsers && boardMlmUsers.length > 0">
+    <table class="table table-striped" aria-describedby="page-heading">
+      <thead>
+        <tr jhiSort [(predicate)]="predicate" [(ascending)]="ascending" [callback]="loadPage.bind(this)">
+          <th scope="col" jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="boardId">
+            <span jhiTranslate="mlmApp.boardMlmUser.boardId">Board Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mlmUserId">
+            <span jhiTranslate="mlmApp.boardMlmUser.mlmUserId">Mlm User Id</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="level"><span jhiTranslate="mlmApp.boardMlmUser.level">Level</span> <fa-icon icon="sort"></fa-icon></th>
+          <th scope="col" jhiSortBy="board.id">
+            <span jhiTranslate="mlmApp.boardMlmUser.board">Board</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col" jhiSortBy="mlmUser.id">
+            <span jhiTranslate="mlmApp.boardMlmUser.mlmUser">Mlm User</span> <fa-icon icon="sort"></fa-icon>
+          </th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let boardMlmUser of boardMlmUsers; trackBy: trackId" data-cy="entityTable">
+          <td>
+            <a [routerLink]="['/board-mlm-user', boardMlmUser.id, 'view']">{{ boardMlmUser.id }}</a>
+          </td>
+          <td>{{ boardMlmUser.boardId }}</td>
+          <td>{{ boardMlmUser.mlmUserId }}</td>
+          <td>{{ boardMlmUser.level }}</td>
+          <td>
+            <div *ngIf="boardMlmUser.board">
+              <a [routerLink]="['/board', boardMlmUser.board?.id, 'view']">{{ boardMlmUser.board?.id }}</a>
+            </div>
+          </td>
+          <td>
+            <div *ngIf="boardMlmUser.mlmUser">
+              <a [routerLink]="['/mlm-user', boardMlmUser.mlmUser?.id, 'view']">{{ boardMlmUser.mlmUser?.id }}</a>
+            </div>
+          </td>
+          <td class="text-right">
+            <div class="btn-group">
+              <button
+                type="submit"
+                [routerLink]="['/board-mlm-user', boardMlmUser.id, 'view']"
+                class="btn btn-info btn-sm"
+                data-cy="entityDetailsButton"
+              >
+                <fa-icon icon="eye"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+              </button>
+
+              <button
+                type="submit"
+                [routerLink]="['/board-mlm-user', boardMlmUser.id, 'edit']"
+                class="btn btn-primary btn-sm"
+                data-cy="entityEditButton"
+              >
+                <fa-icon icon="pencil-alt"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+              </button>
+
+              <button type="submit" (click)="delete(boardMlmUser)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                <fa-icon icon="times"></fa-icon>
+                <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="boardMlmUsers && boardMlmUsers.length > 0">
+    <div class="row justify-content-center">
+      <jhi-item-count [params]="{ page: page, totalItems: totalItems, itemsPerPage: itemsPerPage }"></jhi-item-count>
+    </div>
+
+    <div class="row justify-content-center">
+      <ngb-pagination
+        [collectionSize]="totalItems"
+        [(page)]="ngbPaginationPage"
+        [pageSize]="itemsPerPage"
+        [maxSize]="5"
+        [rotate]="true"
+        [boundaryLinks]="true"
+        (pageChange)="loadPage($event)"
+      ></ngb-pagination>
+    </div>
+  </div>
+</div>
