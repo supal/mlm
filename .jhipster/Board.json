@@ -1,0 +1,22 @@
+{
+  "name": "Board",
+  "fields": [
+    {
+      "fieldName": "type",
+      "fieldType": "BoardType",
+      "fieldValues": "SINGLE,MULTI,MANUAL",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "relationships": [],
+  "entityTableName": "board",
+  "dto": "no",
+  "pagination": "infinite-scroll",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210518101545"
+}

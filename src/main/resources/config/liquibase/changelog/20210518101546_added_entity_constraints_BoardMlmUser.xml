@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+    <!--
+        Added the constraints for entity BoardMlmUser.
+    -->
+    <changeSet id="20210518101546-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="board_id_id"
+                                 baseTableName="board_mlm_user"
+                                 constraintName="fk_board_mlm_user__board_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="board"/>
+
+        <addForeignKeyConstraint baseColumnNames="mlm_user_id_id"
+                                 baseTableName="board_mlm_user"
+                                 constraintName="fk_board_mlm_user__mlm_user_id_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="mlm_user"/>
+    </changeSet>
+</databaseChangeLog>

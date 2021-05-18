@@ -1,0 +1,52 @@
+<div class="row justify-content-center">
+  <div class="col-8">
+    <div *ngIf="boardMlmUser">
+      <h2 data-cy="boardMlmUserDetailsHeading"><span jhiTranslate="mlmApp.boardMlmUser.detail.title">Board Mlm User</span></h2>
+
+      <hr />
+
+      <jhi-alert-error></jhi-alert-error>
+
+      <jhi-alert></jhi-alert>
+
+      <dl class="row-md jh-entity-details">
+        <dt><span jhiTranslate="global.field.id">ID</span></dt>
+        <dd>
+          <span>{{ boardMlmUser.id }}</span>
+        </dd>
+        <dt><span jhiTranslate="mlmApp.boardMlmUser.boardId">Board Id</span></dt>
+        <dd>
+          <span>{{ boardMlmUser.boardId }}</span>
+        </dd>
+        <dt><span jhiTranslate="mlmApp.boardMlmUser.mlmUserId">Mlm User Id</span></dt>
+        <dd>
+          <span>{{ boardMlmUser.mlmUserId }}</span>
+        </dd>
+        <dt><span jhiTranslate="mlmApp.boardMlmUser.level">Level</span></dt>
+        <dd>
+          <span>{{ boardMlmUser.level }}</span>
+        </dd>
+        <dt><span jhiTranslate="mlmApp.boardMlmUser.boardId">Board Id</span></dt>
+        <dd>
+          <div *ngIf="boardMlmUser.boardId">
+            <a [routerLink]="['/board', boardMlmUser.boardId?.id, 'view']">{{ boardMlmUser.boardId?.id }}</a>
+          </div>
+        </dd>
+        <dt><span jhiTranslate="mlmApp.boardMlmUser.mlmUserId">Mlm User Id</span></dt>
+        <dd>
+          <div *ngIf="boardMlmUser.mlmUserId">
+            <a [routerLink]="['/mlm-user', boardMlmUser.mlmUserId?.id, 'view']">{{ boardMlmUser.mlmUserId?.id }}</a>
+          </div>
+        </dd>
+      </dl>
+
+      <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+        <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+      </button>
+
+      <button type="button" [routerLink]="['/board-mlm-user', boardMlmUser.id, 'edit']" class="btn btn-primary">
+        <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+      </button>
+    </div>
+  </div>
+</div>

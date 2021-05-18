@@ -1,0 +1,28 @@
+{
+  "mlmApp": {
+    "mlmUser": {
+      "home": {
+        "title": "Mlm Users",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Mlm User",
+        "createOrEditLabel": "Create or edit a Mlm User",
+        "notFound": "No Mlm Users found"
+      },
+      "created": "A new Mlm User is created with identifier {{ param }}",
+      "updated": "A Mlm User is updated with identifier {{ param }}",
+      "deleted": "A Mlm User is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Mlm User {{ id }}?"
+      },
+      "detail": {
+        "title": "Mlm User"
+      },
+      "id": "ID",
+      "userId": "User Id",
+      "paid": "Paid",
+      "active": "Active",
+      "refMlmUserId": "Ref Mlm User Id",
+      "userId": "User Id"
+    }
+  }
+}
