@@ -1,0 +1,10 @@
+{
+  "mlmApp": {
+    "BoardType": {
+      "null": "",
+      "SINGLE": "SINGLE",
+      "MULTI": "MULTI",
+      "MANUAL": "MANUAL"
+    }
+  }
+}
