@@ -1,0 +1,41 @@
+{
+  "name": "BoardMlmUser",
+  "fields": [
+    {
+      "fieldName": "boardId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "mlmUserId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "level",
+      "fieldType": "Integer"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "board",
+      "otherEntityRelationshipName": "boardMlmUser",
+      "relationshipName": "boardId"
+    },
+    {
+      "relationshipType": "many-to-one",
+      "otherEntityName": "mlmUser",
+      "otherEntityRelationshipName": "boardMlmUser",
+      "relationshipName": "mlmUserId"
+    }
+  ],
+  "entityTableName": "board_mlm_user",
+  "dto": "no",
+  "pagination": "pagination",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "applications": "*",
+  "changelogDate": "20210518101546"
+}
